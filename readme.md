@@ -1,3 +1,24 @@
+## OAuth设计
+有Paas在做这项服务，给非开发者都可以使用，相当于一个平台，接入应用和Providers，比如我有一个App需要这项服务，就可以申请一个账号，会给我回调地址，Token，我在我的应用登录页面使用它的服务，跳转到他的用户登录页面，用户可以选择注册登录或者使用第三方提供者的账号登录，登录成功后页面跳转到回调地址，我可以通过回调的参数和Token取他那儿获取用户的信息，这样子的话，用户登录和注册就都使用第三方的工具了，用户数据应该是有接口可以获取回来的。    
+只适合小型的开发工具或者网站，大用户量的网站不会愿意把自己的用户数据存储到别人的平台。
+
+#### 方便理解搭建一个OAuth Provider和应用登录授权Demo
+__OAuth Provider:__     
+- Provider端: 允许应用注册,应用需要注册账号,某一个接口返回该应用的APIKey和Access_token,供应用配置此Provider。应用登录请求过来时,提供接口去验证APIKEY,并且跳转到用户登录授权界面,授权通过后,调用回调链接,添加validate_code。在服务端设置此次授权的过期时效。    
+- 应用端:  提供配置Provider的信息,一个Fake的应用首页,点击登录跳转到Provider的登录界面, 输入Provider的账户密码后,登录成功后,跳转到callback,配置callback,拿validate_code去调用获取token,拿token获取用户信息,存储到应用数据库,然后跳转到refer链接,显示登录成功,显示用户信息。     
+
+__技术方面:__      
+使用laravel。      
+应用端使用,一个控制器做Provider的回调,一个路由页面做首页,一个路由页面做登录页面,配置文件配置相关的参数。    
+Provider端使用,一个登录,注册页面,一个获取APIKEY,Access_token接口,一个展示登录处理回调页面。   
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

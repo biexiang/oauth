@@ -7,16 +7,6 @@ __OAuth Provider:__
 - Provider端: 允许应用注册,应用需要注册账号,某一个接口返回该应用的APIKey和Access_token,供应用配置此Provider。应用登录请求过来时,提供接口去验证APIKEY,并且跳转到用户登录授权界面,授权通过后,调用回调链接,添加validate_code。在服务端设置此次授权的过期时效。    
 - 应用端:  提供配置Provider的信息,一个Fake的应用首页,点击登录跳转到Provider的登录界面, 输入Provider的账户密码后,登录成功后,跳转到callback,配置callback,拿validate_code去调用获取token,拿token获取用户信息,存储到应用数据库,然后跳转到refer链接,显示登录成功,显示用户信息。     
 
-__技术方面:__      
-使用laravel。      
-应用端使用,一个控制器做Provider的回调,一个路由页面做首页,一个路由页面做登录页面,配置文件配置相关的参数。    
-Provider端使用,一个登录,注册页面,一个获取APIKEY,Access_token接口,一个展示登录处理回调页面。   
-
-
-
-
-
-
 
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
